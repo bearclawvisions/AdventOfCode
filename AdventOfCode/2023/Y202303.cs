@@ -57,8 +57,13 @@ public class Y202303(IHelper helper)
         }
         reader.Close();
 
-        var result = CheckSymbolNextToNumber(starLocations, allNumberLocations);
+        var result = CalculateGearRatio(starLocations, allNumberLocations);
         return result;
+    }
+
+    private static int CalculateGearRatio(HashSet<(int, int)> stars, List<List<(int, int, int, int)>> numbers)
+    {
+        return 0;
     }
 
     private static HashSet<(int,int)> GetSymbolLocations(int row, string line, string pattern)
