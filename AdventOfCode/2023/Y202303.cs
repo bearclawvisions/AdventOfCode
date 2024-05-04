@@ -96,11 +96,9 @@ public class Y202303(IHelper helper)
                         if (adjacentNumbers == 2)
                             break;
                     }
-                    if (adjacentNumbers == 2)
-                        break;
+                    if (adjacentNumbers == 2) break;
                 }
-                if (adjacentNumbers == 2)
-                    break;
+                if (adjacentNumbers == 2) break;
             }
             if (adjacentNumbers == 2)
                 gearResults.Add(multiplicationResult);
