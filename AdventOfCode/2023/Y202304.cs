@@ -2,6 +2,7 @@
 
 public class Y202304(IHelper helper)
 {
+    private static int totalCards = 0;
     public void Run()
     {
         // Part One
@@ -49,7 +50,7 @@ public class Y202304(IHelper helper)
         while (!string.IsNullOrWhiteSpace(line))
         {
             var splitCardNumber = line.Split(":");
-            var cardNumber = int.Parse(splitCardNumber[0].Split(" ")[1]);
+            var cardNumber = int.Parse(splitCardNumber[0].Split(" ", StringSplitOptions.RemoveEmptyEntries)[1]);
             var winningNumbers = splitCardNumber[1].Split("|")[0]
                 .Split(" ", StringSplitOptions.RemoveEmptyEntries)
                 .Select(int.Parse).ToList();
@@ -64,13 +65,40 @@ public class Y202304(IHelper helper)
         }
         reader.Close();
         
-        var totalCards = CheckCards(scratchCards);
+        CheckCards(scratchCards);
+        
         return totalCards;
     }
 
-    private static int CheckCards(List<Tuple<int, List<int>, List<int>>> scratchCards)
+    private static void CheckCards(List<Tuple<int, List<int>, List<int>>> scratchCards)
     {
-        return 0;
+        var cardMatches = scratchCards.Select(card => (card.Item1, card.Item3.Intersect(card.Item2).Count())).ToDictionary();
+        foreach (var match in cardMatches)
+        {
+            AddCard(match.Key, cardMatches);
+        }
+    }
+
+    private static void AddCard(int cardNo, Dictionary<int, int> cardMatches)
+    {
+        totalCards++;
+
+        if (cardMatches.ContainsKey(cardNo) && cardMatches[cardNo] != 0)
+        {
+            for (int i = cardNo + 1; i <= cardNo + cardMatches[cardNo]; i++)
+            {
+                AddCard(i, cardMatches);
+            }
+        }
+    }
+
+    private static (int, int) CheckCopies(Tuple<int, List<int>, List<int>> card, int originalMatchingNumbers, List<Tuple<int, List<int>, List<int>>> scratchCards)
+    {
+
+        var copy = scratchCards.First(x => x.Item1 == card.Item1 + originalMatchingNumbers);
+        var result = (copy.Item1, copy.Item3.Intersect(copy.Item2).Count());
+        
+        return result;
     }
 
     private static int CheckWinningNumbers(List<int> winningNumbers, List<int> lotteryNumbers)
