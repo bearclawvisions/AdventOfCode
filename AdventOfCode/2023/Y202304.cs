@@ -64,7 +64,6 @@ public class Y202304(IHelper helper)
             line = reader.ReadLine();
         }
         reader.Close();
-        
         CheckCards(scratchCards);
         
         return totalCards;
@@ -82,23 +81,11 @@ public class Y202304(IHelper helper)
     private static void AddCard(int cardNo, Dictionary<int, int> cardMatches)
     {
         totalCards++;
-
-        if (cardMatches.ContainsKey(cardNo) && cardMatches[cardNo] != 0)
+        if (!cardMatches.ContainsKey(cardNo) || cardMatches[cardNo] == 0) return;
+        for (var i = cardNo + 1; i <= cardNo + cardMatches[cardNo]; i++)
         {
-            for (int i = cardNo + 1; i <= cardNo + cardMatches[cardNo]; i++)
-            {
-                AddCard(i, cardMatches);
-            }
+            AddCard(i, cardMatches);
         }
-    }
-
-    private static (int, int) CheckCopies(Tuple<int, List<int>, List<int>> card, int originalMatchingNumbers, List<Tuple<int, List<int>, List<int>>> scratchCards)
-    {
-
-        var copy = scratchCards.First(x => x.Item1 == card.Item1 + originalMatchingNumbers);
-        var result = (copy.Item1, copy.Item3.Intersect(copy.Item2).Count());
-        
-        return result;
     }
 
     private static int CheckWinningNumbers(List<int> winningNumbers, List<int> lotteryNumbers)
