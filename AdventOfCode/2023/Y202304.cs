@@ -2,7 +2,7 @@
 
 public class Y202304(IHelper helper)
 {
-    private static int totalCards = 0;
+    private static int _totalCards = 0;
     public void Run()
     {
         // Part One
@@ -66,7 +66,7 @@ public class Y202304(IHelper helper)
         reader.Close();
         CheckCards(scratchCards);
         
-        return totalCards;
+        return _totalCards;
     }
 
     private static void CheckCards(List<Tuple<int, List<int>, List<int>>> scratchCards)
@@ -80,7 +80,7 @@ public class Y202304(IHelper helper)
 
     private static void AddCard(int cardNo, Dictionary<int, int> cardMatches)
     {
-        totalCards++;
+        _totalCards++;
         if (!cardMatches.ContainsKey(cardNo) || cardMatches[cardNo] == 0) return;
         for (var i = cardNo + 1; i <= cardNo + cardMatches[cardNo]; i++)
         {
