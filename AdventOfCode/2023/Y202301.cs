@@ -3,30 +3,12 @@ using System.Text.RegularExpressions;
 
 namespace AdventOfCode._2023;
 
-public class Y202301
+public class Y202301(IHelper helper) : AoCBase
 {
-    private static List<int> _calibrabtionList;
-    private readonly IHelper _helper;
-
-    public Y202301(IHelper helper)
+    protected override int PartOne()
     {
-        _calibrabtionList = [];
-        _helper = helper;
-    }
-
-    public void Run()
-    {
-        // Part One
-        Console.WriteLine("Part One: " + GetCalibrationList(_calibrabtionList));
-
-        // Part Two
-        Console.WriteLine("Part Two: " + ReplaceStringNumberWithInt(_calibrabtionList));
-    }
-    
-    private int GetCalibrationList(List<int> calibrationList)
-    {
-        _calibrabtionList = [];  // clear the list
-        var inputPath = _helper.GetInputFilePath(2023, 1);
+        var calibrationList = new List<int>();
+        var inputPath = helper.GetInputFilePath(2023, 1);
 
         // StreamReader is more memory effecient than File.ReadAllLines
         using var reader = new StreamReader(inputPath);
@@ -52,10 +34,10 @@ public class Y202301
         return calibrationList.Sum();
     }
 
-    private int ReplaceStringNumberWithInt(List<int> calibrationList)
+    protected override  int PartTwo()
     {
-        _calibrabtionList = [];  // clear the list
-        var inputPath = _helper.GetInputFilePath(2023, 1);
+        var calibrationList = new List<int>();
+        var inputPath = helper.GetInputFilePath(2023, 1);
         var words = new[] {"one", "two", "three", "four", "five", "six", "seven", "eight", "nine"};
         const string pattern = @"\d|one|two|three|four|five|six|seven|eight|nine";
         

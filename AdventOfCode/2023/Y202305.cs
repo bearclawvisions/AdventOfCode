@@ -1,17 +1,8 @@
 ﻿namespace AdventOfCode._2023;
 
-public class Y202305(IHelper helper)
+public class Y202305(IHelper helper) : AoCBase
 {
-    public void Run()
-    {
-        // Part One
-        Console.WriteLine("Part One: " + PartOne());
-
-        // Part Two
-        Console.WriteLine("Part Two: " );
-    }
-    
-    private int PartOne()
+    protected override int PartOne()
     {
         var inputPath = helper.GetInputFilePath(2023, 5);
         var seedsAndMaps = File.ReadAllText(inputPath).Split(Environment.NewLine + Environment.NewLine);

@@ -2,18 +2,9 @@
 
 namespace AdventOfCode._2023;
 
-public class Y202303(IHelper helper)
+public class Y202303(IHelper helper) : AoCBase
 {
-    public void Run()
-    {
-        // Part One
-        Console.WriteLine("Part One: " + EngineSchematic());
-
-        // Part Two
-        Console.WriteLine("Part Two: " + BetterSchematic());
-    }
-    
-    private int EngineSchematic()
+    protected override int PartOne()
     {
         var inputPath = helper.GetInputFilePath(2023, 3);
         using var reader = new StreamReader(inputPath);
@@ -37,7 +28,7 @@ public class Y202303(IHelper helper)
         return result;
     }
 
-    private int BetterSchematic()
+    protected override int PartTwo()
     {
         var inputPath = helper.GetInputFilePath(2023, 3);
         using var reader = new StreamReader(inputPath);

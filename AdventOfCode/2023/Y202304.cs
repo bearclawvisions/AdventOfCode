@@ -1,18 +1,10 @@
 ﻿namespace AdventOfCode._2023;
 
-public class Y202304(IHelper helper)
+public class Y202304(IHelper helper) : AoCBase
 {
     private static int _totalCards = 0;
-    public void Run()
-    {
-        // Part One
-        Console.WriteLine("Part One: " + Scratchcards());
-
-        // Part Two
-        Console.WriteLine("Part Two: " + ScratchcardTotal());
-    }
     
-    private int Scratchcards()
+    protected override int PartOne()
     {
         var inputPath = helper.GetInputFilePath(2023, 4);
         using var reader = new StreamReader(inputPath);
@@ -39,7 +31,7 @@ public class Y202304(IHelper helper)
         return totalPoints;
     }
 
-    private int ScratchcardTotal()
+    protected override int PartTwo()
     {
         var inputPath = helper.GetInputFilePath(2023, 4);
         using var reader = new StreamReader(inputPath);

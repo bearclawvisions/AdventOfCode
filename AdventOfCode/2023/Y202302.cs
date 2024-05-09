@@ -1,21 +1,12 @@
 ﻿namespace AdventOfCode._2023;
 
-public class Y202302(IHelper helper)
+public class Y202302(IHelper helper) : AoCBase
 {
     private int redMax = 12;
     private int greenMax = 13;
     private int blueMax = 14;
 
-    public void Run()
-    {
-        // Part One
-        Console.WriteLine("Part One: " + GameOfCubes());
-
-        // Part Two
-        Console.WriteLine("Part Two: " + PowerOfTheCubes());
-    }
-
-    private int GameOfCubes()
+    protected override int PartOne()
     {
         var inputPath = helper.GetInputFilePath(2023, 2);
         using var reader = new StreamReader(inputPath);
@@ -39,7 +30,7 @@ public class Y202302(IHelper helper)
         return possibleGames.Sum();
     }
     
-    private int PowerOfTheCubes()
+    protected override int PartTwo()
     {
         var inputPath = helper.GetInputFilePath(2023, 2);
         using var reader = new StreamReader(inputPath);
