@@ -14,15 +14,8 @@ public class Y202305(IHelper helper)
     private int PartOne()
     {
         var inputPath = helper.GetInputFilePath(2023, 5);
-        using var reader = new StreamReader(inputPath);
-        var line = reader.ReadLine();
-
-        while (!string.IsNullOrWhiteSpace(line))
-        {
-            
-            line = reader.ReadLine();
-        }
-        reader.Close();
+        var seedsAndMaps = File.ReadAllText(inputPath).Split(Environment.NewLine + Environment.NewLine);
+        var seedList = seedsAndMaps[0].Split(":")[1].Split(" ", StringSplitOptions.RemoveEmptyEntries).Select(int.Parse).ToList();
 
         return 0;
     }
