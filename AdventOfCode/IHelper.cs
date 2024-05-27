@@ -2,5 +2,5 @@
 
 public interface IHelper
 {
-    string GetInputFilePath(int year, int day);
+    IEnumerable<string> GetInput(int year, int day);
 }

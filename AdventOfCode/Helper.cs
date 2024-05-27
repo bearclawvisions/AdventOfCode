@@ -2,7 +2,13 @@
 
 public class Helper : IHelper
 {
-    public string GetInputFilePath(int year, int day)
+    public IEnumerable<string> GetInput(int year, int day)
+    {
+        var filePath = GetInputFilePath(year, day);
+        return File.ReadAllLines(filePath);
+    }
+    
+    private string GetInputFilePath(int year, int day)
     {
         var solutionRoot = GetSolutionRootDirectory();
         var relativePath = Path.Combine("AdventOfCode", year.ToString(), string.Concat(year, day.ToString("00")) + "input.txt");
