@@ -6,8 +6,7 @@ public class Y202305(IHelper helper) : AoCBase
 
     protected override int PartOne(object input)
     {
-        var inputString = (string)input;
-        var seedsAndMaps = inputString.Split(Environment.NewLine + Environment.NewLine);
+        var seedsAndMaps = ((string)input).Split(Environment.NewLine + Environment.NewLine);
         var seedList = seedsAndMaps[0].Split(":")[1].Split(" ", StringSplitOptions.RemoveEmptyEntries).Select(long.Parse).ToList();
         var result =  FindSeedLocation(seedList, MapProcessing(seedsAndMaps));
 

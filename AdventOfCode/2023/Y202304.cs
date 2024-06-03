@@ -1,17 +1,17 @@
-﻿namespace AdventOfCode._2023;
+﻿using System.Collections;
+
+namespace AdventOfCode._2023;
 
 public class Y202304(IHelper helper) : AoCBase
 {
     private static int _totalCards = 0;
-    
-    protected override int PartOne()
-    {
-        var inputPath = helper.GetInputFilePath(2023, 4);
-        using var reader = new StreamReader(inputPath);
-        var line = reader.ReadLine();
 
+    protected override object GetInputFromFile() { return helper.GetInputLines(2023, 4); }
+
+    protected override int PartOne(object input)
+    {
         var totalPoints = 0;
-        while (!string.IsNullOrWhiteSpace(line))
+        foreach (var line in (IEnumerable<string>)input)
         {
             var splitCardNumber = line.Split(":");
             var winningNumbers = splitCardNumber[1].Split("|")[0]
@@ -23,23 +23,16 @@ public class Y202304(IHelper helper) : AoCBase
                 .Select(int.Parse).ToList();
 
             totalPoints += CheckWinningNumbers(winningNumbers, lotteryNumbers);
-            
-            line = reader.ReadLine();
         }
-        reader.Close();
 
         return totalPoints;
     }
 
-    protected override int PartTwo()
+    protected override int PartTwo(object input)
     {
-        var inputPath = helper.GetInputFilePath(2023, 4);
-        using var reader = new StreamReader(inputPath);
-        var line = reader.ReadLine();
-
         // cardNo, winningNo[], lotteryNo[]
         var scratchCards = new List<Tuple<int, List<int>, List<int>>>();
-        while (!string.IsNullOrWhiteSpace(line))
+        foreach (var line in (IEnumerable<string>)input)
         {
             var splitCardNumber = line.Split(":");
             var cardNumber = int.Parse(splitCardNumber[0].Split(" ", StringSplitOptions.RemoveEmptyEntries)[1]);
@@ -52,10 +45,7 @@ public class Y202304(IHelper helper) : AoCBase
                 .Select(int.Parse).ToList();
             
             scratchCards.Add(new Tuple<int, List<int>, List<int>>(cardNumber, winningNumbers, lotteryNumbers));
-
-            line = reader.ReadLine();
         }
-        reader.Close();
         CheckCards(scratchCards);
         
         return _totalCards;

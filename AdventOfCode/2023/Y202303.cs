@@ -4,51 +4,43 @@ namespace AdventOfCode._2023;
 
 public class Y202303(IHelper helper) : AoCBase
 {
-    protected override int PartOne()
-    {
-        var inputPath = helper.GetInputFilePath(2023, 3);
-        using var reader = new StreamReader(inputPath);
-        var line = reader.ReadLine();
+    protected override object GetInputFromFile() { return helper.GetInputLines(2023, 3); }
 
+    protected override int PartOne(object input)
+    {
         var symbolLocations = new HashSet<(int, int)>();
         var allNumberLocations = new List<List<(int, int, int, int)>>();
+        
         var row = 1;
-        while (!string.IsNullOrWhiteSpace(line))
+        foreach (var line in (IEnumerable<string>)input)
         {
             var result1 = GetSymbolLocations(row, line, @"[^.\d]");
             symbolLocations.UnionWith(result1);
             var result2 = GetNumberLocations(row, line, @"\d+");
             allNumberLocations.Add(result2);
-            line = reader.ReadLine();
             row++;
         }
-        reader.Close();
 
         var result = CheckSymbolNextToNumber(symbolLocations, allNumberLocations);
         return result;
     }
 
-    protected override int PartTwo()
+    protected override int PartTwo(object input)
     {
-        var inputPath = helper.GetInputFilePath(2023, 3);
-        using var reader = new StreamReader(inputPath);
-        var line = reader.ReadLine();
-
         // (row, col) of * locations
         var starLocations = new HashSet<(int, int)>();
         // (row, numberStart, numberEnd, number)
         var allNumberLocations = new List<List<(int, int, int, int)>>();
+        
         var row = 1;
-        while (!string.IsNullOrWhiteSpace(line))
+        foreach (var line in (IEnumerable<string>)input)
         {
             var result1 = GetSymbolLocations(row, line, @"\*");
             starLocations.UnionWith(result1);
             var result2 = GetNumberLocations(row, line, @"\d+");
             allNumberLocations.Add(result2);
-            line = reader.ReadLine();
             row++;
         }
-        reader.Close();
 
         var result = CalculateGearRatio(starLocations, allNumberLocations);
         return result;

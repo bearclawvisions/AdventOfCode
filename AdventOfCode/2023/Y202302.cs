@@ -6,48 +6,38 @@ public class Y202302(IHelper helper) : AoCBase
     private int greenMax = 13;
     private int blueMax = 14;
 
-    protected override int PartOne()
+    protected override object GetInputFromFile() { return helper.GetInputLines(2023, 2); }
+
+    protected override int PartOne(object input)
     {
-        var inputPath = helper.GetInputFilePath(2023, 2);
-        using var reader = new StreamReader(inputPath);
-        var line = reader.ReadLine();
         var possibleGames = new List<int>();
-        
-        while (!string.IsNullOrWhiteSpace(line))
+
+        foreach (var line in (IEnumerable<string>)input)
         {
             var splitGame = line.Split(":");
             var gameNumber = int.Parse(splitGame[0].Split(" ")[1]);
             var splitSubGames = splitGame[1].Split(";");
             var possibleSubgame = CheckSubGame(splitSubGames);
-            
+
             if (possibleSubgame)
                 possibleGames.Add(gameNumber);
-
-            line = reader.ReadLine();
         }
-        reader.Close();
-        
+
         return possibleGames.Sum();
     }
-    
-    protected override int PartTwo()
+
+    protected override int PartTwo(object input)
     {
-        var inputPath = helper.GetInputFilePath(2023, 2);
-        using var reader = new StreamReader(inputPath);
-        var line = reader.ReadLine();
         var cubePower = new List<int>();
-        
-        while (!string.IsNullOrWhiteSpace(line))
+
+        foreach (var line in (IEnumerable<string>)input)
         {
             var splitGame = line.Split(":");
             var splitSubGames = splitGame[1].Split(";");
             var subgamePower = SubgamePower(splitSubGames);
             cubePower.Add(subgamePower);
-
-            line = reader.ReadLine();
         }
-        reader.Close();
-        
+
         return cubePower.Sum();
     }
 
@@ -60,7 +50,7 @@ public class Y202302(IHelper helper) : AoCBase
             // Whitespace is in the split too as first [0], hence [2] and [1]
             var cubeDict = splitCubes.Select(cube => cube.Split(" "))
                 .ToDictionary(cube => cube[2], amount => int.Parse(amount[1]));
-            
+
             foreach (var cube in cubeDict)
             {
                 switch (cube.Key)
@@ -76,19 +66,19 @@ public class Y202302(IHelper helper) : AoCBase
 
         return possibleSubgame;
     }
-    
+
     private int SubgamePower(string[] subgames)
     {
         var minRedCubes = 0;
         var minGreenCubes = 0;
         var minBlueCubes = 0;
-        
+
         foreach (var subGame in subgames)
         {
             var splitCubes = subGame.Split(",");
             var cubeDict = splitCubes.Select(cube => cube.Split(" "))
                 .ToDictionary(cube => cube[2], amount => int.Parse(amount[1]));
-            
+
             foreach (var cube in cubeDict)
             {
                 switch (cube.Key)
