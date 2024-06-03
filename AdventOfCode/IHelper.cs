@@ -2,5 +2,6 @@
 
 public interface IHelper
 {
-    IEnumerable<string> GetInput(int year, int day);
+    IEnumerable<string> GetInputLines(int year, int day);
+    string GetInputText(int year, int day);
 }

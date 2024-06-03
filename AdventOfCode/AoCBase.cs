@@ -1,20 +1,17 @@
 ﻿namespace AdventOfCode;
 
-public class AoCBase(IHelper helper)
+public class AoCBase
 {
     public void Run()
     {
-        var input = UseRealInput(0, 0);
+        var input = GetInputFromFile();
         Console.WriteLine("Part One: " + PartOne(input));
         Console.WriteLine("Part Two: " + PartTwo(input));
     }
 
-    protected virtual IEnumerable<string> UseRealInput(int year, int day)
-    {
-        return helper.GetInput(year, day);
-    } 
+    protected virtual object GetInputFromFile() { return new object(); }
     
-    protected virtual int PartOne(IEnumerable<string> input) { return 0; }
+    protected virtual int PartOne(object input) { return 0; }
 
-    protected virtual int PartTwo(IEnumerable<string> input) { return 0; }
+    protected virtual int PartTwo(object input) { return 0; }
 }

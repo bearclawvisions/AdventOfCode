@@ -2,14 +2,16 @@
 
 public class Y202305(IHelper helper) : AoCBase
 {
-    protected override int PartOne()
+    protected override object GetInputFromFile() { return helper.GetInputText(2023, 5); }
+
+    protected override int PartOne(object input)
     {
-        var inputPath = helper.GetInputFilePath(2023, 5);
-        var seedsAndMaps = File.ReadAllText(inputPath).Split(Environment.NewLine + Environment.NewLine);
+        var inputString = (string)input;
+        var seedsAndMaps = inputString.Split(Environment.NewLine + Environment.NewLine);
         var seedList = seedsAndMaps[0].Split(":")[1].Split(" ", StringSplitOptions.RemoveEmptyEntries).Select(long.Parse).ToList();
         var result =  FindSeedLocation(seedList, MapProcessing(seedsAndMaps));
 
-        return (int)result;
+        return 0;
     }
     
     private static Dictionary<string, List<Dictionary<string, long>>> MapProcessing(string[] seedsAndMaps)

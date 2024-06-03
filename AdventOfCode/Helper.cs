@@ -2,10 +2,16 @@
 
 public class Helper : IHelper
 {
-    public IEnumerable<string> GetInput(int year, int day)
+    public IEnumerable<string> GetInputLines(int year, int day)
     {
         var filePath = GetInputFilePath(year, day);
         return File.ReadAllLines(filePath);
+    }
+    
+    public string GetInputText(int year, int day)
+    {
+        var filePath = GetInputFilePath(year, day);
+        return File.ReadAllText(filePath);
     }
     
     private string GetInputFilePath(int year, int day)
