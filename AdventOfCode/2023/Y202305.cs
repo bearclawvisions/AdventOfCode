@@ -4,13 +4,13 @@ public class Y202305(IHelper helper) : AoCBase
 {
     protected override object GetInputFromFile() { return helper.GetInputText(2023, 5); }
 
-    protected override int PartOne(object input)
+    public override int PartOne(object input)
     {
         var seedsAndMaps = ((string)input).Split(Environment.NewLine + Environment.NewLine);
         var seedList = seedsAndMaps[0].Split(":")[1].Split(" ", StringSplitOptions.RemoveEmptyEntries).Select(long.Parse).ToList();
         var result =  FindSeedLocation(seedList, MapProcessing(seedsAndMaps));
 
-        return 0;
+        return (int)result;
     }
     
     private static Dictionary<string, List<Dictionary<string, long>>> MapProcessing(string[] seedsAndMaps)

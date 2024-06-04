@@ -10,7 +10,7 @@ public class Y202301(IHelper helper) : AoCBase
         return helper.GetInputLines(2023, 1);
     }
 
-    protected override int PartOne(object input)
+    public override int PartOne(object input)
     {
         var calibrationList = new List<int>();
 
@@ -32,7 +32,7 @@ public class Y202301(IHelper helper) : AoCBase
         return calibrationList.Sum();
     }
 
-    protected override int PartTwo(object input)
+    public override int PartTwo(object input)
     {
         var calibrationList = new List<int>();
         var words = new[] { "one", "two", "three", "four", "five", "six", "seven", "eight", "nine" };

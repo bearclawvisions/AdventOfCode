@@ -6,7 +6,7 @@ public class Y202303(IHelper helper) : AoCBase
 {
     protected override object GetInputFromFile() { return helper.GetInputLines(2023, 3); }
 
-    protected override int PartOne(object input)
+    public override int PartOne(object input)
     {
         var symbolLocations = new HashSet<(int, int)>();
         var allNumberLocations = new List<List<(int, int, int, int)>>();
@@ -25,7 +25,7 @@ public class Y202303(IHelper helper) : AoCBase
         return result;
     }
 
-    protected override int PartTwo(object input)
+    public override int PartTwo(object input)
     {
         // (row, col) of * locations
         var starLocations = new HashSet<(int, int)>();

@@ -8,7 +8,7 @@ public class Y202302(IHelper helper) : AoCBase
 
     protected override object GetInputFromFile() { return helper.GetInputLines(2023, 2); }
 
-    protected override int PartOne(object input)
+    public override int PartOne(object input)
     {
         var possibleGames = new List<int>();
 
@@ -26,7 +26,7 @@ public class Y202302(IHelper helper) : AoCBase
         return possibleGames.Sum();
     }
 
-    protected override int PartTwo(object input)
+    public override int PartTwo(object input)
     {
         var cubePower = new List<int>();
 

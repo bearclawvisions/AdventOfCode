@@ -8,7 +8,7 @@ public class Y202304(IHelper helper) : AoCBase
 
     protected override object GetInputFromFile() { return helper.GetInputLines(2023, 4); }
 
-    protected override int PartOne(object input)
+    public override int PartOne(object input)
     {
         var totalPoints = 0;
         foreach (var line in (IEnumerable<string>)input)
@@ -28,7 +28,7 @@ public class Y202304(IHelper helper) : AoCBase
         return totalPoints;
     }
 
-    protected override int PartTwo(object input)
+    public override int PartTwo(object input)
     {
         // cardNo, winningNo[], lotteryNo[]
         var scratchCards = new List<Tuple<int, List<int>, List<int>>>();

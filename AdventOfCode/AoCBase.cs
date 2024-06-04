@@ -11,7 +11,7 @@ public class AoCBase
 
     protected virtual object GetInputFromFile() { return new object(); }
     
-    protected virtual int PartOne(object input) { return 0; }
+    public virtual int PartOne(object input) { return 0; }
 
-    protected virtual int PartTwo(object input) { return 0; }
+    public virtual int PartTwo(object input) { return 0; }
 }
