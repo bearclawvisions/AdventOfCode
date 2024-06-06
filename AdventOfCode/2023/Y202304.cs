@@ -2,11 +2,11 @@
 
 namespace AdventOfCode._2023;
 
-public class Y202304(IHelper helper) : AoCBase
+public class Y202304(IHelper _helper) : AoCBase
 {
     private static int _totalCards = 0;
 
-    protected override object GetInputFromFile() { return helper.GetInputLines(2023, 4); }
+    protected override object GetInputFromFile() { return _helper.GetInputLines(2023, 4); }
 
     public override int PartOne(object input)
     {

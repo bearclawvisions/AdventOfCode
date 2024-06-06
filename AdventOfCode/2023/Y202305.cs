@@ -1,8 +1,8 @@
 ﻿namespace AdventOfCode._2023;
 
-public class Y202305(IHelper helper) : AoCBase
+public class Y202305(IHelper _helper) : AoCBase
 {
-    protected override object GetInputFromFile() { return helper.GetInputText(2023, 5); }
+    protected override object GetInputFromFile() { return _helper.GetInputText(2023, 5); }
 
     public override int PartOne(object input)
     {

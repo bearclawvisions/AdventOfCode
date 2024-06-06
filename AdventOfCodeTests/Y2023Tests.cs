@@ -1,24 +1,36 @@
 using AdventOfCode;
 using AdventOfCode._2023;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace AdventOfCodeTests;
 
 [TestFixture]
 public class Y2023Tests()
 {
-    private IHelper helper;
-    
+    private ServiceProvider _serviceProvider;
+    private IHelper _helper;
+
     [OneTimeSetUp]
-    public void Init() { helper = new Helper(); }
+    public void Init()
+    {
+        var services = new ServiceCollection();
+        services.AddSingleton<IHelper, Helper>();
+        _serviceProvider = services.BuildServiceProvider();
+
+        _helper = _serviceProvider.GetService<IHelper>();
+    }
 
     [OneTimeTearDown]
-    public void Cleanup() {  }
+    public void Cleanup()
+    {
+        _serviceProvider.Dispose();
+    }
 
     #region Day 1
     [Test]
     public void Y202301_PartOne()
     {
-        var y202301 = new Y202301(helper);
+        var y202301 = new Y202301(_helper);
         var input = new List<string>
         {
             "1abc2",
@@ -33,7 +45,7 @@ public class Y2023Tests()
     [Test]
     public void Y202301_PartTwo()
     {
-        var y202301 = new Y202301(helper);
+        var y202301 = new Y202301(_helper);
         var input = new List<string>
         {
             "two1nine",
@@ -53,7 +65,7 @@ public class Y2023Tests()
     [Test]
     public void Y202302_PartOne()
     {
-        var y202302 = new Y202302(helper);
+        var y202302 = new Y202302(_helper);
         var input = new List<string>
         {
             "Game 1: 3 blue, 4 red; 1 red, 2 green, 6 blue; 2 green",
@@ -69,7 +81,7 @@ public class Y2023Tests()
     [Test]
     public void Y202302_PartTwo()
     {
-        var y202302 = new Y202302(helper);
+        var y202302 = new Y202302(_helper);
         var input = new List<string>
         {
             "Game 1: 3 blue, 4 red; 1 red, 2 green, 6 blue; 2 green",
@@ -87,7 +99,7 @@ public class Y2023Tests()
     [Test]
     public void Y202303_PartOne()
     {
-        var y202303 = new Y202303(helper);
+        var y202303 = new Y202303(_helper);
         var input = new List<string>
         {
             "467..114..",
@@ -108,7 +120,7 @@ public class Y2023Tests()
     [Test]
     public void Y202303_PartTwo()
     {
-        var y202303 = new Y202303(helper);
+        var y202303 = new Y202303(_helper);
         var input = new List<string>
         {
             "467..114..",
@@ -131,7 +143,7 @@ public class Y2023Tests()
     [Test]
     public void Y202304_PartOne()
     {
-        var y202304 = new Y202304(helper);
+        var y202304 = new Y202304(_helper);
         var input = new List<string>
         {
             "Card 1: 41 48 83 86 17 | 83 86  6 31 17  9 48 53",
@@ -148,7 +160,7 @@ public class Y2023Tests()
     [Test]
     public void Y202304_PartTwo()
     {
-        var y202304 = new Y202304(helper);
+        var y202304 = new Y202304(_helper);
         var input = new List<string>
         {
             "Card 1: 41 48 83 86 17 | 83 86  6 31 17  9 48 53",
@@ -167,7 +179,7 @@ public class Y2023Tests()
     [Test]
     public void Y202305_PartOne()
     {
-        var y202305 = new Y202305(helper);
+        var y202305 = new Y202305(_helper);
         var input = "seeds: 79 14 55 13\n\nseed-to-soil map:\n50 98 2\n52 50 48\n\nsoil-to-fertilizer map:\n0 15 37\n37 52 2\n39 0 15\n\nfertilizer-to-water map:\n49 53 8\n0 11 42\n42 0 7\n57 7 4\n\nwater-to-light map:\n88 18 7\n18 25 70\n\nlight-to-temperature map:\n45 77 23\n81 45 19\n68 64 13\n\ntemperature-to-humidity map:\n0 69 1\n1 0 69\n\nhumidity-to-location map:\n60 56 37\n56 93 4";
         var result = y202305.PartOne(input);
         Assert.That(result, Is.EqualTo(35));
@@ -176,7 +188,7 @@ public class Y2023Tests()
     [Test]
     public void Y202305_PartTwo()
     {
-        var y202305 = new Y202305(helper);
+        var y202305 = new Y202305(_helper);
         var input = "seeds: 79 14 55 13\n\nseed-to-soil map:\n50 98 2\n52 50 48\n\nsoil-to-fertilizer map:\n0 15 37\n37 52 2\n39 0 15\n\nfertilizer-to-water map:\n49 53 8\n0 11 42\n42 0 7\n57 7 4\n\nwater-to-light map:\n88 18 7\n18 25 70\n\nlight-to-temperature map:\n45 77 23\n81 45 19\n68 64 13\n\ntemperature-to-humidity map:\n0 69 1\n1 0 69\n\nhumidity-to-location map:\n60 56 37\n56 93 4";
         var result = y202305.PartTwo(input);
         Assert.That(result, Is.EqualTo(46));

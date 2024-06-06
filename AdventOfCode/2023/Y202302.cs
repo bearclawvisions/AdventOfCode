@@ -1,12 +1,12 @@
 ﻿namespace AdventOfCode._2023;
 
-public class Y202302(IHelper helper) : AoCBase
+public class Y202302(IHelper _helper) : AoCBase
 {
     private int redMax = 12;
     private int greenMax = 13;
     private int blueMax = 14;
 
-    protected override object GetInputFromFile() { return helper.GetInputLines(2023, 2); }
+    protected override object GetInputFromFile() { return _helper.GetInputLines(2023, 2); }
 
     public override int PartOne(object input)
     {

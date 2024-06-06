@@ -3,12 +3,9 @@ using System.Text.RegularExpressions;
 
 namespace AdventOfCode._2023;
 
-public class Y202301(IHelper helper) : AoCBase
+public class Y202301(IHelper _helper) : AoCBase
 {
-    protected override object GetInputFromFile()
-    {
-        return helper.GetInputLines(2023, 1);
-    }
+    protected override object GetInputFromFile() { return _helper.GetInputLines(2023, 1); }
 
     public override int PartOne(object input)
     {
