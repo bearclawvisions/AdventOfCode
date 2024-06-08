@@ -12,6 +12,29 @@ public class Y202305(IHelper _helper) : AoCBase
 
         return (int)result;
     }
+
+    public override int PartTwo(object input)
+    {
+        var seedsAndMaps = ((string)input).Split(Environment.NewLine + Environment.NewLine);
+        var seedList = seedsAndMaps[0].Split(":")[1].Split(" ", StringSplitOptions.RemoveEmptyEntries).Select(long.Parse).ToList();
+        
+        long result = 0;
+        // iterate over the list in steps of 2
+        for (var item = 0; item < seedList.Count; item += 2)
+        {
+            var seed = seedList[item];
+            var range = seedList[item + 1];
+
+            for (long number = 0; number < range; number++)
+            {
+                var subResult = FindSeedLocation([seed + number], MapProcessing(seedsAndMaps));
+                if (subResult < result || result == 0)
+                    result = subResult;
+            }
+        }
+        
+        return (int)result;
+    }
     
     private static Dictionary<string, List<Dictionary<string, long>>> MapProcessing(string[] seedsAndMaps)
     {
