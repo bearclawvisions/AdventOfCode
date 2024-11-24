@@ -6,7 +6,7 @@ public class Y202304(IHelper _helper) : AoCBase
 {
     private static int _totalCards = 0;
 
-    protected override object GetInputFromFile() { return _helper.GetInputLines(2023, 4); }
+    protected override object GetInputFromFile() { return _helper.GetInput(InputType.Lines); }
 
     public override int PartOne(object input)
     {

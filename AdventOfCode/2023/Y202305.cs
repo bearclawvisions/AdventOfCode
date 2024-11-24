@@ -2,7 +2,7 @@
 
 public class Y202305(IHelper _helper) : AoCBase
 {
-    protected override object GetInputFromFile() { return _helper.GetInputText(2023, 5); }
+    protected override object GetInputFromFile() { return _helper.GetInput(InputType.FullText); }
 
     public override int PartOne(object input)
     {
@@ -15,25 +15,52 @@ public class Y202305(IHelper _helper) : AoCBase
 
     public override int PartTwo(object input)
     {
-        var seedsAndMaps = ((string)input).Split(Environment.NewLine + Environment.NewLine);
-        var seedList = seedsAndMaps[0].Split(":")[1].Split(" ", StringSplitOptions.RemoveEmptyEntries).Select(long.Parse).ToList();
-        
-        long result = 0;
-        // iterate over the list in steps of 2
-        for (var item = 0; item < seedList.Count; item += 2)
-        {
-            var seed = seedList[item];
-            var range = seedList[item + 1];
+        List<string> puzzleInput = input.ToString().Split(Environment.NewLine + Environment.NewLine).Select(x => x[(x.IndexOf(':') + 1)..]).ToList();
 
-            for (long number = 0; number < range; number++)
+        List<long> values = puzzleInput[0].Split(' ', StringSplitOptions.RemoveEmptyEntries).Select(long.Parse).ToList();
+
+        List<List<(long start, long range, long offset)>> maps =
+            puzzleInput.Skip(1)
+                .Select(x => x.Split(Environment.NewLine, StringSplitOptions.RemoveEmptyEntries)
+                    .Select(x => x.Split(' ').Select(long.Parse).ToList()
+                    ).ToList()
+                    .Select(x => (x[1], x[2], x[0] - x[1])).ToList()
+                ).ToList();
+
+        long part2Answer = long.MaxValue;
+
+        long CalcVal(long value)
+        {
+            for (int i = 0; i < maps.Count; i++)
             {
-                var subResult = FindSeedLocation([seed + number], MapProcessing(seedsAndMaps));
-                if (subResult < result || result == 0)
-                    result = subResult;
+                foreach ((long start, long range, long offset) in maps[i])
+                {
+                    if (start <= value && value <= start + range)
+                    {
+                        value += offset;
+                        break;
+                    }
+                }
             }
+
+            return value;
         }
-        
-        return (int)result;
+
+        static IEnumerable<long> LongRange(long start, long count)
+        {
+            for (long i = 0; i < count; i++) yield return start + i;
+        }
+
+        for (int i = 0; i < values.Count - 1; i += 2)
+        {
+            long minOfRange = LongRange(values[i], values[i + 1])
+                .AsParallel()
+                .Select(CalcVal).Min();
+
+            if (minOfRange < part2Answer) part2Answer = minOfRange;
+        }
+
+        return (int)part2Answer;
     }
     
     private static Dictionary<string, List<Dictionary<string, long>>> MapProcessing(string[] seedsAndMaps)

@@ -2,22 +2,32 @@
 
 public class Helper : IHelper
 {
-    public IEnumerable<string> GetInputLines(int year, int day)
+    public object GetInput(InputType inputType)
     {
-        var filePath = GetInputFilePath(year, day);
+        switch (inputType)
+        {
+            case InputType.Lines: return GetInputLines();
+            case InputType.FullText: return GetInputText();
+        }
+        return "Could not get input";
+    }
+    
+    private IEnumerable<string> GetInputLines()
+    {
+        var filePath = GetInputFilePath();
         return File.ReadAllLines(filePath);
     }
     
-    public string GetInputText(int year, int day)
+    private string GetInputText()
     {
-        var filePath = GetInputFilePath(year, day);
+        var filePath = GetInputFilePath();
         return File.ReadAllText(filePath);
     }
     
-    private string GetInputFilePath(int year, int day)
+    private string GetInputFilePath()
     {
         var solutionRoot = GetSolutionRootDirectory();
-        var relativePath = Path.Combine("AdventOfCode", year.ToString(), string.Concat(year, day.ToString("00")) + "input.txt");
+        var relativePath = Path.Combine("AdventOfCode", "input.txt");
         
         return Path.Combine(solutionRoot, relativePath);
     }
@@ -35,4 +45,10 @@ public class Helper : IHelper
         
         return assemblyLocation ?? "Unable to find *.sln root...";
     }
+}
+
+public enum InputType
+{
+    Lines,
+    FullText,
 }

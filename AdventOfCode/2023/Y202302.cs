@@ -6,7 +6,7 @@ public class Y202302(IHelper _helper) : AoCBase
     private int greenMax = 13;
     private int blueMax = 14;
 
-    protected override object GetInputFromFile() { return _helper.GetInputLines(2023, 2); }
+    protected override object GetInputFromFile() { return _helper.GetInput(InputType.Lines); }
 
     public override int PartOne(object input)
     {

@@ -4,7 +4,7 @@ namespace AdventOfCode._2023;
 
 public class Y202303(IHelper _helper) : AoCBase
 {
-    protected override object GetInputFromFile() { return _helper.GetInputLines(2023, 3); }
+    protected override object GetInputFromFile() { return _helper.GetInput(InputType.Lines); }
 
     public override int PartOne(object input)
     {
