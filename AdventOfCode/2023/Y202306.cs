@@ -4,9 +4,9 @@ public class Y202306 : AoCBase
 {
     public override int PartOne(string input)
     {
-        var lines = input.ToEnumerableString();
-        var time = 0;
-        var distance = 1;
+        var lines = input.ToEnumerableString().ToArray();
+        var timeArray = lines.ElementAt(0).Split(':')[1].Split(' ', StringSplitOptions.RemoveEmptyEntries);
+        var distanceArray = lines.ElementAt(1).Split(':')[1].Split(' ', StringSplitOptions.RemoveEmptyEntries);
 
         return 0;
     }
