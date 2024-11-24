@@ -2,16 +2,14 @@
 
 namespace AdventOfCode._2023;
 
-public class Y202304(IHelper _helper) : AoCBase
+public class Y202304 : AoCBase
 {
     private static int _totalCards = 0;
 
-    protected override object GetInputFromFile() { return _helper.GetInput(InputType.Lines); }
-
-    public override int PartOne(object input)
+    public override int PartOne(string input)
     {
         var totalPoints = 0;
-        foreach (var line in (IEnumerable<string>)input)
+        foreach (var line in input.ToEnumerableString())
         {
             var splitCardNumber = line.Split(":");
             var winningNumbers = splitCardNumber[1].Split("|")[0]
@@ -28,11 +26,11 @@ public class Y202304(IHelper _helper) : AoCBase
         return totalPoints;
     }
 
-    public override int PartTwo(object input)
+    public override int PartTwo(string input)
     {
         // cardNo, winningNo[], lotteryNo[]
         var scratchCards = new List<Tuple<int, List<int>, List<int>>>();
-        foreach (var line in (IEnumerable<string>)input)
+        foreach (var line in input.ToEnumerableString())
         {
             var splitCardNumber = line.Split(":");
             var cardNumber = int.Parse(splitCardNumber[0].Split(" ", StringSplitOptions.RemoveEmptyEntries)[1]);

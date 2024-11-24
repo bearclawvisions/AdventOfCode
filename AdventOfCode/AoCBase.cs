@@ -2,11 +2,11 @@
 
 namespace AdventOfCode;
 
-public class AoCBase
+public class AoCBase()
 {
     public void Run()
     {
-        var input = GetInputFromFile();
+        var input = Helper.GetInput();
         
         var stopwatch = Stopwatch.StartNew();
         Console.Write("Part One: " + PartOne(input));
@@ -19,9 +19,7 @@ public class AoCBase
         Console.WriteLine($" in {stopwatch2.ElapsedMilliseconds} ms");
     }
 
-    protected virtual object GetInputFromFile() { return new object(); }
-    
-    public virtual int PartOne(object input) { return 0; }
+    public virtual int PartOne(string input) => 0;
 
-    public virtual int PartTwo(object input) { return 0; }
+    public virtual int PartTwo(string input) => 0;
 }

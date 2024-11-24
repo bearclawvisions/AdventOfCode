@@ -1,30 +1,19 @@
 ﻿namespace AdventOfCode;
 
-public class Helper : IHelper
+public static class Helper
 {
-    public object GetInput(InputType inputType)
-    {
-        switch (inputType)
-        {
-            case InputType.Lines: return GetInputLines();
-            case InputType.FullText: return GetInputText();
-        }
-        return "Could not get input";
-    }
-    
-    private IEnumerable<string> GetInputLines()
-    {
-        var filePath = GetInputFilePath();
-        return File.ReadAllLines(filePath);
-    }
-    
-    private string GetInputText()
+    public static string GetInput()
     {
         var filePath = GetInputFilePath();
         return File.ReadAllText(filePath);
     }
+
+    public static IEnumerable<string> ToEnumerableString(this string input)
+    {
+        return input.Split(Environment.NewLine, StringSplitOptions.RemoveEmptyEntries);
+    }
     
-    private string GetInputFilePath()
+    private static string GetInputFilePath()
     {
         var solutionRoot = GetSolutionRootDirectory();
         var relativePath = Path.Combine("AdventOfCode", "input.txt");
@@ -45,10 +34,4 @@ public class Helper : IHelper
         
         return assemblyLocation ?? "Unable to find *.sln root...";
     }
-}
-
-public enum InputType
-{
-    Lines,
-    FullText,
 }

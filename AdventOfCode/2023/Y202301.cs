@@ -3,15 +3,13 @@ using System.Text.RegularExpressions;
 
 namespace AdventOfCode._2023;
 
-public class Y202301(IHelper _helper) : AoCBase
+public class Y202301 : AoCBase
 {
-    protected override object GetInputFromFile() { return _helper.GetInput(InputType.Lines); }
-
-    public override int PartOne(object input)
+    public override int PartOne(string input)
     {
         var calibrationList = new List<int>();
 
-        foreach (var line in (IEnumerable<string>)input)
+        foreach (var line in input.ToEnumerableString())
         {
             // Regex to match the first occurence of an int
             var match1 = Regex.Match(line, @"\d").Value;
@@ -29,13 +27,13 @@ public class Y202301(IHelper _helper) : AoCBase
         return calibrationList.Sum();
     }
 
-    public override int PartTwo(object input)
+    public override int PartTwo(string input)
     {
         var calibrationList = new List<int>();
         var words = new[] { "one", "two", "three", "four", "five", "six", "seven", "eight", "nine" };
         const string pattern = @"\d|one|two|three|four|five|six|seven|eight|nine";
 
-        foreach (var line in (IEnumerable<string>)input)
+        foreach (var line in input.ToEnumerableString())
         {
             var number1 = Regex.Match(line, pattern).Value;
             var number2 = Regex.Match(line, pattern, RegexOptions.RightToLeft).Value;

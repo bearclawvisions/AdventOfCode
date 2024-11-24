@@ -1,21 +1,19 @@
 ﻿namespace AdventOfCode._2023;
 
-public class Y202305(IHelper _helper) : AoCBase
+public class Y202305 : AoCBase
 {
-    protected override object GetInputFromFile() { return _helper.GetInput(InputType.FullText); }
-
-    public override int PartOne(object input)
+    public override int PartOne(string input)
     {
-        var seedsAndMaps = ((string)input).Split(Environment.NewLine + Environment.NewLine);
+        var seedsAndMaps = input.Split(Environment.NewLine + Environment.NewLine);
         var seedList = seedsAndMaps[0].Split(":")[1].Split(" ", StringSplitOptions.RemoveEmptyEntries).Select(long.Parse).ToList();
         var result =  FindSeedLocation(seedList, MapProcessing(seedsAndMaps));
 
         return (int)result;
     }
 
-    public override int PartTwo(object input)
+    public override int PartTwo(string input)
     {
-        List<string> puzzleInput = input.ToString().Split(Environment.NewLine + Environment.NewLine).Select(x => x[(x.IndexOf(':') + 1)..]).ToList();
+        List<string> puzzleInput = input.Split(Environment.NewLine + Environment.NewLine).Select(x => x[(x.IndexOf(':') + 1)..]).ToList();
 
         List<long> values = puzzleInput[0].Split(' ', StringSplitOptions.RemoveEmptyEntries).Select(long.Parse).ToList();
 

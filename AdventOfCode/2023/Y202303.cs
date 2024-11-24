@@ -2,17 +2,15 @@
 
 namespace AdventOfCode._2023;
 
-public class Y202303(IHelper _helper) : AoCBase
+public class Y202303 : AoCBase
 {
-    protected override object GetInputFromFile() { return _helper.GetInput(InputType.Lines); }
-
-    public override int PartOne(object input)
+    public override int PartOne(string input)
     {
         var symbolLocations = new HashSet<(int, int)>();
         var allNumberLocations = new List<List<(int, int, int, int)>>();
         
         var row = 1;
-        foreach (var line in (IEnumerable<string>)input)
+        foreach (var line in input.ToEnumerableString())
         {
             var result1 = GetSymbolLocations(row, line, @"[^.\d]");
             symbolLocations.UnionWith(result1);
@@ -25,7 +23,7 @@ public class Y202303(IHelper _helper) : AoCBase
         return result;
     }
 
-    public override int PartTwo(object input)
+    public override int PartTwo(string input)
     {
         // (row, col) of * locations
         var starLocations = new HashSet<(int, int)>();
@@ -33,7 +31,7 @@ public class Y202303(IHelper _helper) : AoCBase
         var allNumberLocations = new List<List<(int, int, int, int)>>();
         
         var row = 1;
-        foreach (var line in (IEnumerable<string>)input)
+        foreach (var line in input.ToEnumerableString())
         {
             var result1 = GetSymbolLocations(row, line, @"\*");
             starLocations.UnionWith(result1);

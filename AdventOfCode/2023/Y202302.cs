@@ -1,18 +1,16 @@
 ﻿namespace AdventOfCode._2023;
 
-public class Y202302(IHelper _helper) : AoCBase
+public class Y202302 : AoCBase
 {
     private int redMax = 12;
     private int greenMax = 13;
     private int blueMax = 14;
 
-    protected override object GetInputFromFile() { return _helper.GetInput(InputType.Lines); }
-
-    public override int PartOne(object input)
+    public override int PartOne(string input)
     {
         var possibleGames = new List<int>();
 
-        foreach (var line in (IEnumerable<string>)input)
+        foreach (var line in input.ToEnumerableString())
         {
             var splitGame = line.Split(":");
             var gameNumber = int.Parse(splitGame[0].Split(" ")[1]);
@@ -26,11 +24,11 @@ public class Y202302(IHelper _helper) : AoCBase
         return possibleGames.Sum();
     }
 
-    public override int PartTwo(object input)
+    public override int PartTwo(string input)
     {
         var cubePower = new List<int>();
 
-        foreach (var line in (IEnumerable<string>)input)
+        foreach (var line in input.ToEnumerableString())
         {
             var splitGame = line.Split(":");
             var splitSubGames = splitGame[1].Split(";");
