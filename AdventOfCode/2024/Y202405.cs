@@ -63,7 +63,6 @@ public class Y202405 : AoCBase
         return ruleList;
     }
 
-    // is incorrect
     public override int PartTwo(string input)
     {
         var lines = input.ToEnumerableString().ToArray();
@@ -72,7 +71,7 @@ public class Y202405 : AoCBase
 
         // Parse the rules into a graph representation
         var graph = new Dictionary<string, List<string>>();
-        var inDegree = new Dictionary<string, int>();
+        var allPages = new HashSet<string>();
 
         foreach (var rule in rules)
         {
@@ -80,24 +79,43 @@ public class Y202405 : AoCBase
             var secondPage = rule[1];
 
             if (!graph.ContainsKey(firstPage)) graph[firstPage] = new List<string>();
-            if (!inDegree.ContainsKey(firstPage)) inDegree[firstPage] = 0;
-            if (!inDegree.ContainsKey(secondPage)) inDegree[secondPage] = 0;
-
             graph[firstPage].Add(secondPage);
-            inDegree[secondPage]++;
+
+            allPages.Add(firstPage);
+            allPages.Add(secondPage);
         }
 
-        // Function to topologically sort a subgraph
+        // Function to validate if an update is in the correct order
+        bool IsValidOrder(List<string> update)
+        {
+            var pageIndex = update.Select((page, index) => new { Page = page, Index = index })
+                                  .ToDictionary(x => x.Page, x => x.Index);
+
+            foreach (var rule in rules)
+            {
+                var firstPage = rule[0];
+                var secondPage = rule[1];
+
+                if (!pageIndex.ContainsKey(firstPage) || !pageIndex.ContainsKey(secondPage)) continue;
+
+                if (pageIndex[firstPage] >= pageIndex[secondPage]) return false;
+            }
+
+            return true;
+        }
+
+        // Function to perform topological sorting on a subgraph
         List<string> TopologicalSort(List<string> pages)
         {
             var subGraph = new Dictionary<string, List<string>>();
-            var subInDegree = new Dictionary<string, int>();
+            var inDegree = new Dictionary<string, int>();
+            var availablePages = new HashSet<string>(pages);
 
-            // Build the subgraph using only the pages in the current update
+            // Initialize subgraph and in-degree for the current update
             foreach (var page in pages)
             {
                 if (!subGraph.ContainsKey(page)) subGraph[page] = new List<string>();
-                if (!subInDegree.ContainsKey(page)) subInDegree[page] = 0;
+                if (!inDegree.ContainsKey(page)) inDegree[page] = 0;
             }
 
             foreach (var page in pages)
@@ -106,18 +124,18 @@ public class Y202405 : AoCBase
 
                 foreach (var neighbor in graph[page])
                 {
-                    if (!pages.Contains(neighbor)) continue;
+                    if (!availablePages.Contains(neighbor)) continue;
 
                     subGraph[page].Add(neighbor);
-                    subInDegree[neighbor]++;
+                    inDegree[neighbor]++;
                 }
             }
 
-            // Perform topological sort using Kahn's algorithm
+            // Kahn's algorithm for topological sorting
             var queue = new Queue<string>();
             foreach (var page in pages)
             {
-                if (subInDegree[page] == 0) queue.Enqueue(page);
+                if (inDegree[page] == 0) queue.Enqueue(page);
             }
 
             var sortedList = new List<string>();
@@ -128,18 +146,25 @@ public class Y202405 : AoCBase
 
                 foreach (var neighbor in subGraph[current])
                 {
-                    subInDegree[neighbor]--;
-                    if (subInDegree[neighbor] == 0) queue.Enqueue(neighbor);
+                    inDegree[neighbor]--;
+                    if (inDegree[neighbor] == 0) queue.Enqueue(neighbor);
                 }
             }
 
             return sortedList;
         }
 
-        // Reorder incorrect updates and calculate the middle page sum
+        // Correct the updates and calculate the middle page sum
         var middleSum = 0;
+
         foreach (var update in updates)
         {
+            if (IsValidOrder(update))
+            {
+                // Skip valid updates
+                continue;
+            }
+
             var sortedUpdate = TopologicalSort(update);
 
             // Find the middle page and add to the sum
