@@ -65,24 +65,40 @@ public class Y202406 : AoCBase
 
     private void CheckForRubble()
     {
-        var lineUp = _partOneLines[_guardPos.Item1-1];
-        if (_move == Direction.Up && lineUp[_guardPos.Item2] == Rubble && _guardPos.Item1-1 >= 0)
-            ChangeDirection();
-        
-        var lineDown = _partOneLines[_guardPos.Item1+1];
-        if (_move == Direction.Down && lineDown[_guardPos.Item2] == Rubble && _guardPos.Item1+1 <= _partOneLines.Length-1)
-            ChangeDirection();
+        if (_guardPos.Item1 != 0)
+        {
+            var lineUp = _partOneLines[_guardPos.Item1-1];
+            if (_move == Direction.Up && lineUp[_guardPos.Item2] == Rubble && _guardPos.Item1-1 >= 0)
+                ChangeDirection();
+        }
 
-        var currentLine = _partOneLines[_guardPos.Item1];
-        if (_move == Direction.Left && currentLine[_guardPos.Item2-1] == Rubble && _guardPos.Item2-1 >= 0)
-            ChangeDirection();
-        
-        if (_move == Direction.Right && currentLine[_guardPos.Item2+1] == Rubble && _guardPos.Item2+1 <= currentLine.Length-1)
-            ChangeDirection();
+        if (_guardPos.Item1 != _partOneLines.Length - 1)
+        {
+            var lineDown = _partOneLines[_guardPos.Item1+1];
+            if (_move == Direction.Down && lineDown[_guardPos.Item2] == Rubble && _guardPos.Item1+1 <= _partOneLines.Length-1)
+                ChangeDirection();
+        }
+
+        if (_guardPos.Item2 != 0)
+        {
+            var currentLine = _partOneLines[_guardPos.Item1];
+            if (_move == Direction.Left && currentLine[_guardPos.Item2-1] == Rubble && _guardPos.Item2-1 >= 0)
+                ChangeDirection();
+        }
+
+        if (_guardPos.Item2 != _partOneLines[_guardPos.Item1].Length - 1)
+        {
+            var currentLine = _partOneLines[_guardPos.Item1];
+            if (_move == Direction.Right && currentLine[_guardPos.Item2+1] == Rubble && _guardPos.Item2+1 <= currentLine.Length-1)
+                ChangeDirection();
+        }
 
         // check if guard goes off the grid
-        if (_guardPos.Item2-1 < 0 || _guardPos.Item2+1 > currentLine.Length-1 || _guardPos.Item1-1 < 0 || _guardPos.Item1+1 > _partOneLines.Length-1)
+        if (_guardPos.Item2-1 < 0 || _guardPos.Item2+1 > _partOneLines[_guardPos.Item1].Length-1 || _guardPos.Item1-1 < 0 || _guardPos.Item1+1 > _partOneLines.Length-1)
+        {
+            MarkPosition();
             _hasLeftTheBuilding = true;
+        }
     }
 
     private void ChangeDirection()
