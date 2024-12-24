@@ -6,5 +6,5 @@ using AdventOfCode._2024;
 // y2023.Run();
 
 // 2024
-var y2024 = new Y202405();
+var y2024 = new Y202406();
 y2024.Run();
