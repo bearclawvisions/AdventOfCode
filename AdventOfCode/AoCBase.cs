@@ -13,6 +13,11 @@ public class AoCBase()
         stopwatch.Stop();
         Console.WriteLine($" in {stopwatch.Elapsed.Nanoseconds} ns");
         
+        var stopwatch1 = Stopwatch.StartNew();
+        Console.Write("Part One: " + PartOneLong(input));
+        stopwatch1.Stop();
+        Console.WriteLine($" in {stopwatch1.Elapsed.Nanoseconds} ns");
+        
         var stopwatch2 = Stopwatch.StartNew();
         Console.Write("Part Two: " + PartTwo(input));
         stopwatch2.Stop();
@@ -20,6 +25,7 @@ public class AoCBase()
     }
 
     public virtual int PartOne(string input) => 0;
+    public virtual long PartOneLong(string input) => 0;
 
     public virtual int PartTwo(string input) => 0;
 }
