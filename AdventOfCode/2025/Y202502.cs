@@ -5,7 +5,7 @@ public class Y202502 : AoCBase
     public override long PartOneLong(string input)
     {
         var lines = input.Split(',');
-        long sum = 0;
+        long sum = 0L;
         
         foreach (var line in lines)
         {
@@ -21,7 +21,7 @@ public class Y202502 : AoCBase
 
     private static long FindInvalidIds(long min, long max)
     {
-        long sum = 0;
+        long sum = 0L;
         for (var digit = min; digit <= max; digit++)
         {
             if (IsInvalidId(digit))
