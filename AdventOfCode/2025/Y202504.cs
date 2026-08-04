@@ -1,17 +1,21 @@
+using System.Numerics;
+
 namespace AdventOfCode._2025;
 
 public class Y202504 : AoCBase
 {
-    private static readonly int[][] Directions =
+    private readonly record struct Coords(int X, int Y);
+    
+    private static readonly Coords[] Directions =
     [
-        [0, 1],  // Right
-        [0, -1], // Left
-        [1, 0],  // Down
-        [-1, 0], // Up
-        [1, 1],  // Diagonal Down-Right
-        [1, -1], // Diagonal Down-Left
-        [-1, 1], // Diagonal Up-Right
-        [-1, -1] // Diagonal Up-Left
+        new(0, 1),  // Right
+        new(0, -1), // Left
+        new(1, 0),  // Down
+        new(-1, 0), // Up
+        new(1, 1),  // Diagonal Down-Right
+        new(1, -1), // Diagonal Down-Left
+        new(-1, 1), // Diagonal Up-Right
+        new(-1, -1) // Diagonal Up-Left
     ];
     
     private static int _rows = 0;
@@ -52,8 +56,8 @@ public class Y202504 : AoCBase
         var rollCount = 0;
         foreach (var direction in Directions)
         {
-            var rowCursor = startRow + direction[0];
-            var colCursor = startCol + direction[1];
+            var rowCursor = startRow + direction.X;
+            var colCursor = startCol + direction.Y;
 
             // Out of bounds guarding
             if (rowCursor < 0 || rowCursor >= _rows || colCursor < 0 || colCursor >= _columns)
