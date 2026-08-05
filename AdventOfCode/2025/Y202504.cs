@@ -31,8 +31,26 @@ public class Y202504 : AoCBase
         
         return accessibleRolls;
     }
-    
-    private static int AccessibleRolls(string[] grid)
+
+    public override int PartTwo(string input)
+    {
+        var lines = input.ToEnumerableString().ToArray();
+        _rows = lines.Length;
+        _columns = lines[0].Length;
+        
+        var totalAccessibleRolls = 0;
+        int removed;
+
+        do
+        {
+            removed = AccessibleRolls(lines, true);
+            totalAccessibleRolls += removed;
+        } while (removed != 0);
+        
+        return totalAccessibleRolls;
+    }
+
+    private static int AccessibleRolls(string[] grid, bool partTwo = false)
     {
         var count = 0;
         for (int row = 0; row < _rows; row++)
@@ -43,7 +61,7 @@ public class Y202504 : AoCBase
                     continue;
                 
                 // if it is a roll '@' see if it has less than four adjacent rolls in any direction
-                if (HasLessThanFourAdjacentRolls(grid, row, col))
+                if (HasLessThanFourAdjacentRolls(grid, row, col, partTwo))
                     count++;
             }
         }
@@ -51,7 +69,7 @@ public class Y202504 : AoCBase
         return count;
     }
     
-    private static bool HasLessThanFourAdjacentRolls(string[] grid, int startRow, int startCol)
+    private static bool HasLessThanFourAdjacentRolls(string[] grid, int startRow, int startCol, bool partTwo)
     {
         var rollCount = 0;
         foreach (var direction in Directions)
@@ -65,6 +83,14 @@ public class Y202504 : AoCBase
 
             if (grid[rowCursor][colCursor] == '@')
                 rollCount++;
+        }
+
+        if (partTwo && rollCount < 4)
+        {
+            // remove the roll from the grid
+            var chars = grid[startRow].ToCharArray(); // isolate the row
+            chars[startCol] = '.'; // replace the roll with a '.'
+            grid[startRow] = new string(chars); // update the grid row
         }
 
         return rollCount < 4;
