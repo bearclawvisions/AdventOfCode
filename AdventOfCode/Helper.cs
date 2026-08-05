@@ -27,11 +27,11 @@ public static class Helper
         var assemblyLocation = Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location);
 
         // Navigate up the directory tree until finding the solution root directory (where *.sln file is located)
-        while (assemblyLocation != null && Directory.GetFiles(assemblyLocation, "*.sln").Length == 0)
+        while (assemblyLocation != null && Directory.GetFiles(assemblyLocation, "*.slnx").Length == 0)
         {
             assemblyLocation = Directory.GetParent(assemblyLocation)?.FullName;
         }
         
-        return assemblyLocation ?? "Unable to find *.sln root...";
+        return assemblyLocation ?? "Unable to find *.slnx root...";
     }
 }
