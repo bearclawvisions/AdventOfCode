@@ -11,5 +11,5 @@ using AdventOfCode._2025;
 // y2024.Run();
 
 // 2025
-var y2025 = new Y202506();
+var y2025 = new Y202505();
 y2025.Run();
