@@ -13,10 +13,14 @@ public class Y202505 : AoCBase
             .Select(x => new Range(x[0], x[1]))
             .ToArray();
         
+        // consolidate overlapping ranges, so no need to worry about duplicates
+        var consolidateRanges = ConsolidateRanges(ranges);
+        
         var ingredients = lines.Where(x => !x.Contains('-')).Select(long.Parse).ToList();
         
-        var availableIngredients = new HashSet<long>();
-        foreach (var range in ranges)
+        //var availableIngredients = new HashSet<long>();
+        var amountOfAvailableIngredients = 0;
+        foreach (var range in consolidateRanges)
         {
             // find ingredients falling in range
             var ingredientsInRange = ingredients
@@ -25,12 +29,14 @@ public class Y202505 : AoCBase
             
             foreach (var ingredient in ingredientsInRange)
             {
-                ingredients.Remove(ingredient);
-                availableIngredients.Add(ingredient); // hashset prevents duplicates in the range
+                amountOfAvailableIngredients++;
+                // ingredients.Remove(ingredient);
+                // availableIngredients.Add(ingredient); // hashset prevents duplicates in the range
             }
         }
         
-        return availableIngredients.Count;
+        // return availableIngredients.Count;
+        return amountOfAvailableIngredients;
     }
     
     public override long PartTwoLong(string input)
