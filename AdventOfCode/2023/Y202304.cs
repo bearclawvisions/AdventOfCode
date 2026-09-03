@@ -6,7 +6,7 @@ public class Y202304 : AoCBase
 {
     private static int _totalCards = 0;
 
-    public override int PartOne(string input)
+    public override string PartOne(string input)
     {
         var totalPoints = 0;
         foreach (var line in input.ToEnumerableString())
@@ -23,10 +23,10 @@ public class Y202304 : AoCBase
             totalPoints += CheckWinningNumbers(winningNumbers, lotteryNumbers);
         }
 
-        return totalPoints;
+        return totalPoints.ToString();
     }
 
-    public override int PartTwo(string input)
+    public override string PartTwo(string input)
     {
         // cardNo, winningNo[], lotteryNo[]
         var scratchCards = new List<Tuple<int, List<int>, List<int>>>();
@@ -46,7 +46,7 @@ public class Y202304 : AoCBase
         }
         CheckCards(scratchCards);
         
-        return _totalCards;
+        return _totalCards.ToString();
     }
 
     private static void CheckCards(List<Tuple<int, List<int>, List<int>>> scratchCards)

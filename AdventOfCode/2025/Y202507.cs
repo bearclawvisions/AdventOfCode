@@ -8,7 +8,7 @@ public class Y202507 : AoCBase
     private const char Splitter = '^';
     private const char Beam = '|';
     
-    public override int PartOne(string input)
+    public override string PartOne(string input)
     {
         var lines = input.ToEnumerableString().ToArray();
         var splitHitCount = 0;
@@ -40,10 +40,10 @@ public class Y202507 : AoCBase
             }
         }
 
-        return splitHitCount;
+        return splitHitCount.ToString();
     }
 
-    public override long PartTwoLong(string input)
+    public override string PartTwo(string input)
     {
         var lines = input.ToEnumerableString().ToArray();
 
@@ -72,7 +72,7 @@ public class Y202507 : AoCBase
             beams = next;
         }
 
-        return beams.Values.Sum();
+        return beams.Values.Sum().ToString();
     }
 
     private static void ReplaceWithBeam(ref string[] lines, int lineIndex, int beam, bool isSplitter)

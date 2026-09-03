@@ -3,7 +3,7 @@ namespace AdventOfCode._2025;
 public class Y202505 : AoCBase
 {
     private record Range(long Min, long Max);
-    public override int PartOne(string input)
+    public override string PartOne(string input)
     {
         var lines = input.ToEnumerableString().ToArray();
 
@@ -36,10 +36,10 @@ public class Y202505 : AoCBase
         }
         
         // return availableIngredients.Count;
-        return amountOfAvailableIngredients;
+        return amountOfAvailableIngredients.ToString();
     }
     
-    public override long PartTwoLong(string input)
+    public override string PartTwo(string input)
     {
         var lines = input.ToEnumerableString().ToArray();
 
@@ -59,7 +59,7 @@ public class Y202505 : AoCBase
             freshIngredientIds += range.Max - range.Min + 1;
         }
         
-        return freshIngredientIds;
+        return freshIngredientIds.ToString();
     }
     
     private static List<Range> ConsolidateRanges(IEnumerable<Range> ranges)

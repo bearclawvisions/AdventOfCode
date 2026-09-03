@@ -2,7 +2,7 @@ namespace AdventOfCode._2024;
 
 public class Y202405 : AoCBase
 {
-    public override int PartOne(string input)
+    public override string PartOne(string input)
     {
         var lines = input.ToEnumerableString().ToArray();
         var rules = lines.Where(x => x.Contains('|')).ToArray();
@@ -27,7 +27,7 @@ public class Y202405 : AoCBase
             sum += Convert.ToInt32(splitPages[middle]);
         }
 
-        return sum;
+        return sum.ToString();
     }
 
     private List<bool> CheckRule(string[] splitPages, string current, int number, string[] rules)
@@ -63,7 +63,7 @@ public class Y202405 : AoCBase
         return ruleList;
     }
 
-    public override int PartTwo(string input)
+    public override string PartTwo(string input)
     {
         var lines = input.ToEnumerableString().ToArray();
         var rules = lines.Where(x => x.Contains('|')).Select(rule => rule.Split('|')).ToArray();
@@ -175,6 +175,6 @@ public class Y202405 : AoCBase
             }
         }
 
-        return middleSum;
+        return middleSum.ToString();
     }
 }

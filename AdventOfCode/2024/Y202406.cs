@@ -8,7 +8,7 @@ public class Y202406 : AoCBase
     private string[] _partOneLines = [];
     private (int, int) _guardPos = (0, 0);
     
-    public override int PartOne(string input)
+    public override string PartOne(string input)
     {
         _partOneLines = input.ToEnumerableString().ToArray();
         var sum = 0;
@@ -24,7 +24,7 @@ public class Y202406 : AoCBase
             sum += line.ToCharArray().Count(c => c == 'X');
         }
         
-        return sum;
+        return sum.ToString();
     }
 
     private void GuardStartingPosition()
@@ -112,12 +112,12 @@ public class Y202406 : AoCBase
         }
     }
 
-    public override int PartTwo(string input)
+    public override string PartTwo(string input)
     {
         var lines = input.ToEnumerableString();
         var sum = 0;
 
-        return sum;
+        return sum.ToString();
     }
 }
 

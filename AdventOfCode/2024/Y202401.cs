@@ -2,7 +2,7 @@ namespace AdventOfCode._2024;
 
 public class Y202401 : AoCBase
 {
-    public override int PartOne(string input)
+    public override string PartOne(string input)
     {
         var lines = input.ToEnumerableString().ToArray();
         var firstList = new List<int>();
@@ -28,10 +28,10 @@ public class Y202401 : AoCBase
             sumOfDifferences += difference;
         }
         
-        return sumOfDifferences;
+        return sumOfDifferences.ToString();
     }
 
-    public override int PartTwo(string input)
+    public override string PartTwo(string input)
     {
         var lines = input.ToEnumerableString().ToArray();
         var firstList = new List<int>();
@@ -56,6 +56,6 @@ public class Y202401 : AoCBase
             sumOfDifferences += similarityScore;
         }
         
-        return sumOfDifferences;
+        return sumOfDifferences.ToString();
     }
 }

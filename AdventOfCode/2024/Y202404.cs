@@ -7,14 +7,14 @@ public class Y202404 : AoCBase
     private static List<(int, int)> _locationOfA = new();
 
     
-    public override int PartOne(string input)
+    public override string PartOne(string input)
     {
         var lines = input.ToEnumerableString().ToArray();
         const string target = "XMAS";
 
         var sum = CountWordOccurrences(lines, target);
 
-        return sum;
+        return sum.ToString();
     }
     
     private static int CountWordOccurrences(string[] grid, string target)
@@ -74,12 +74,12 @@ public class Y202404 : AoCBase
         return true;
     }
 
-    public override int PartTwo(string input)
+    public override string PartTwo(string input)
     {
         var lines = input.ToEnumerableString().ToArray();
         var sum = CountXMASOccurrences(lines);
         
-        return sum;
+        return sum.ToString();
     }
     
     private static int CountXMASOccurrences(string[] grid)

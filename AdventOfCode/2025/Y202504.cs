@@ -21,7 +21,7 @@ public class Y202504 : AoCBase
     private static int _rows = 0;
     private static int _columns = 0;
     
-    public override int PartOne(string input)
+    public override string PartOne(string input)
     {
         var lines = input.ToEnumerableString().ToArray();
         _rows = lines.Length;
@@ -29,10 +29,10 @@ public class Y202504 : AoCBase
         
         var accessibleRolls = AccessibleRolls(lines);
         
-        return accessibleRolls;
+        return accessibleRolls.ToString();
     }
 
-    public override int PartTwo(string input)
+    public override string PartTwo(string input)
     {
         var lines = input.ToEnumerableString().ToArray();
         _rows = lines.Length;
@@ -47,7 +47,7 @@ public class Y202504 : AoCBase
             totalAccessibleRolls += removed;
         } while (removed != 0);
         
-        return totalAccessibleRolls;
+        return totalAccessibleRolls.ToString();
     }
 
     private static int AccessibleRolls(string[] grid, bool partTwo = false)

@@ -2,7 +2,7 @@ namespace AdventOfCode._2025;
 
 public class Y202503 : AoCBase
 {
-    public override int PartOne(string input)
+    public override string PartOne(string input)
     {
         var lines = input.ToEnumerableString().ToArray();
         var joltage = 0;
@@ -12,7 +12,7 @@ public class Y202503 : AoCBase
             joltage += FindHighestJoltage(line);
         }
         
-        return joltage;
+        return joltage.ToString();
     }
 
     private static int FindHighestJoltage(string line)

@@ -4,7 +4,7 @@ namespace AdventOfCode._2025;
 
 public class Y202506 : AoCBase
 {
-    public override long PartOneLong(string input)
+    public override string PartOne(string input)
     {
         var lines = input.ToEnumerableString().ToArray();
         var columns = new List<DataStructure>();
@@ -55,7 +55,7 @@ public class Y202506 : AoCBase
             sum += result;
         }
         
-        return sum;
+        return sum.ToString();
     }
 }
 

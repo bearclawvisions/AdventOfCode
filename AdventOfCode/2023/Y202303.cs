@@ -4,7 +4,7 @@ namespace AdventOfCode._2023;
 
 public class Y202303 : AoCBase
 {
-    public override int PartOne(string input)
+    public override string PartOne(string input)
     {
         var symbolLocations = new HashSet<(int, int)>();
         var allNumberLocations = new List<List<(int, int, int, int)>>();
@@ -20,10 +20,10 @@ public class Y202303 : AoCBase
         }
 
         var result = CheckSymbolNextToNumber(symbolLocations, allNumberLocations);
-        return result;
+        return result.ToString();
     }
 
-    public override int PartTwo(string input)
+    public override string PartTwo(string input)
     {
         // (row, col) of * locations
         var starLocations = new HashSet<(int, int)>();
@@ -41,7 +41,7 @@ public class Y202303 : AoCBase
         }
 
         var result = CalculateGearRatio(starLocations, allNumberLocations);
-        return result;
+        return result.ToString();
     }
 
     private static int CalculateGearRatio(HashSet<(int, int)> stars, List<List<(int, int, int, int)>> numbers)

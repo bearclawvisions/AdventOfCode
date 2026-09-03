@@ -2,7 +2,7 @@ namespace AdventOfCode._2024;
 
 public class Y202402 : AoCBase
 {
-    public override int PartOne(string input)
+    public override string PartOne(string input)
     {
         var lines = input.ToEnumerableString().ToArray();
         var correctReports = 0;
@@ -32,16 +32,16 @@ public class Y202402 : AoCBase
 
         }
         
-        return correctReports;
+        return correctReports.ToString();
     }
 
-    public override int PartTwo(string input)
+    public override string PartTwo(string input)
     {
         var lines = input.ToEnumerableString().ToArray();
 
         var correctReports = lines.Count(line => IsSafe(line));
         
-        return correctReports;
+        return correctReports.ToString();
     }
     
     private static bool IsSafe(string line)

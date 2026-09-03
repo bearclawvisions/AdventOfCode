@@ -6,7 +6,7 @@ public class Y202302 : AoCBase
     private int greenMax = 13;
     private int blueMax = 14;
 
-    public override int PartOne(string input)
+    public override string PartOne(string input)
     {
         var possibleGames = new List<int>();
 
@@ -21,10 +21,10 @@ public class Y202302 : AoCBase
                 possibleGames.Add(gameNumber);
         }
 
-        return possibleGames.Sum();
+        return possibleGames.Sum().ToString();
     }
 
-    public override int PartTwo(string input)
+    public override string PartTwo(string input)
     {
         var cubePower = new List<int>();
 
@@ -36,7 +36,7 @@ public class Y202302 : AoCBase
             cubePower.Add(subgamePower);
         }
 
-        return cubePower.Sum();
+        return cubePower.Sum().ToString();
     }
 
     private bool CheckSubGame(IEnumerable<string> subgames)

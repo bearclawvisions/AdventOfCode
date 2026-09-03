@@ -4,7 +4,7 @@ namespace AdventOfCode._2024;
 
 public class Y202403 : AoCBase
 {
-    public override int PartOne(string input)
+    public override string PartOne(string input)
     {
         var lines = input.ToEnumerableString();
         var sum = 0;
@@ -21,10 +21,10 @@ public class Y202403 : AoCBase
             }
         }
 
-        return sum;
+        return sum.ToString();
     }
 
-    public override int PartTwo(string input)
+    public override string PartTwo(string input)
     {
         var lines = input.ToEnumerableString();
         var sum = 0;
@@ -62,6 +62,6 @@ public class Y202403 : AoCBase
             }
         }
     
-        return sum;
+        return sum.ToString();
     }
 }

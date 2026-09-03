@@ -5,7 +5,7 @@ namespace AdventOfCode._2023;
 
 public class Y202301 : AoCBase
 {
-    public override int PartOne(string input)
+    public override string PartOne(string input)
     {
         var calibrationList = new List<int>();
 
@@ -24,10 +24,10 @@ public class Y202301 : AoCBase
             }
         }
 
-        return calibrationList.Sum();
+        return calibrationList.Sum().ToString();
     }
 
-    public override int PartTwo(string input)
+    public override string PartTwo(string input)
     {
         var calibrationList = new List<int>();
         var words = new[] { "one", "two", "three", "four", "five", "six", "seven", "eight", "nine" };
@@ -47,7 +47,7 @@ public class Y202301 : AoCBase
             }
         }
 
-        return calibrationList.Sum();
+        return calibrationList.Sum().ToString();
     }
 
     private static int ConvertToNumber(string word, string[] words)

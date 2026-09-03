@@ -7,7 +7,7 @@ public class Y202501 : AoCBase
     private const int DialMax = 99;
     private const int DialTicks = 100;
     
-    public override int PartOne(string input)
+    public override string PartOne(string input)
     {
         var lines = input.ToEnumerableString().ToArray();
         
@@ -23,10 +23,10 @@ public class Y202501 : AoCBase
                 zeroCount++;
         }
 
-        return zeroCount;
+        return zeroCount.ToString();
     }
 
-    public override int PartTwo(string input)
+    public override string PartTwo(string input)
     {
         var lines = input.ToEnumerableString().ToArray();
         
@@ -41,7 +41,7 @@ public class Y202501 : AoCBase
             dialPosition = ((dialPosition % DialTicks) + DialTicks) % DialTicks;
         }
         
-        return zeroCount;
+        return zeroCount.ToString();
     }
 
     private static int CalculateZerosPassed(int dialPosition, int rotation)

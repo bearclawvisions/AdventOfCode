@@ -2,7 +2,7 @@ namespace AdventOfCode._2025;
 
 public class Y202502 : AoCBase
 {
-    public override long PartOneLong(string input)
+    public override string PartOne(string input)
     {
         var lines = input.Split(',');
         long sum = 0L;
@@ -16,7 +16,7 @@ public class Y202502 : AoCBase
             sum += FindInvalidIds(min, max);
         }
         
-        return sum;
+        return sum.ToString();
     }
 
     private static long FindInvalidIds(long min, long max)
