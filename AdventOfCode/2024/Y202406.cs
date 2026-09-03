@@ -10,7 +10,7 @@ public class Y202406 : AoCBase
     
     public override string PartOne(string input)
     {
-        _partOneLines = input.ToEnumerableString().ToArray();
+        _partOneLines = input.ToArrayInput();
         var sum = 0;
         
         // Find the Guards starting position
@@ -114,7 +114,7 @@ public class Y202406 : AoCBase
 
     public override string PartTwo(string input)
     {
-        var lines = input.ToEnumerableString();
+        var lines = input.ToArrayInput();
         var sum = 0;
 
         return sum.ToString();

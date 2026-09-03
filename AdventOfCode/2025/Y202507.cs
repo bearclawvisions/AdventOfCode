@@ -10,7 +10,7 @@ public class Y202507 : AoCBase
     
     public override string PartOne(string input)
     {
-        var lines = input.ToEnumerableString().ToArray();
+        var lines = input.ToArrayInput();
         var splitHitCount = 0;
 
         // hashset to prevent duplicate beam index and double counting
@@ -45,7 +45,7 @@ public class Y202507 : AoCBase
 
     public override string PartTwo(string input)
     {
-        var lines = input.ToEnumerableString().ToArray();
+        var lines = input.ToArrayInput();
 
         var beams = new Dictionary<int, long>(); // this time we want the dupes
         var start = lines[0].IndexOf(Start, StringComparison.Ordinal);

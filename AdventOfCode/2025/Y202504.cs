@@ -23,7 +23,7 @@ public class Y202504 : AoCBase
     
     public override string PartOne(string input)
     {
-        var lines = input.ToEnumerableString().ToArray();
+        var lines = input.ToArrayInput();
         _rows = lines.Length;
         _columns = lines[0].Length;
         
@@ -34,7 +34,7 @@ public class Y202504 : AoCBase
 
     public override string PartTwo(string input)
     {
-        var lines = input.ToEnumerableString().ToArray();
+        var lines = input.ToArrayInput();
         _rows = lines.Length;
         _columns = lines[0].Length;
         

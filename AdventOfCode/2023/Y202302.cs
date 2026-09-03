@@ -10,7 +10,7 @@ public class Y202302 : AoCBase
     {
         var possibleGames = new List<int>();
 
-        foreach (var line in input.ToEnumerableString())
+        foreach (var line in input.ToArrayInput())
         {
             var splitGame = line.Split(":");
             var gameNumber = int.Parse(splitGame[0].Split(" ")[1]);
@@ -28,7 +28,7 @@ public class Y202302 : AoCBase
     {
         var cubePower = new List<int>();
 
-        foreach (var line in input.ToEnumerableString())
+        foreach (var line in input.ToArrayInput())
         {
             var splitGame = line.Split(":");
             var splitSubGames = splitGame[1].Split(";");

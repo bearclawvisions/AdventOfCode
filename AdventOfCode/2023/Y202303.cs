@@ -10,7 +10,7 @@ public class Y202303 : AoCBase
         var allNumberLocations = new List<List<(int, int, int, int)>>();
         
         var row = 1;
-        foreach (var line in input.ToEnumerableString())
+        foreach (var line in input.ToArrayInput())
         {
             var result1 = GetSymbolLocations(row, line, @"[^.\d]");
             symbolLocations.UnionWith(result1);
@@ -31,7 +31,7 @@ public class Y202303 : AoCBase
         var allNumberLocations = new List<List<(int, int, int, int)>>();
         
         var row = 1;
-        foreach (var line in input.ToEnumerableString())
+        foreach (var line in input.ToArrayInput())
         {
             var result1 = GetSymbolLocations(row, line, @"\*");
             starLocations.UnionWith(result1);

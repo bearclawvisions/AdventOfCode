@@ -6,7 +6,7 @@ public class Y202403 : AoCBase
 {
     public override string PartOne(string input)
     {
-        var lines = input.ToEnumerableString();
+        var lines = input.ToArrayInput();
         var sum = 0;
 
         foreach (var line in lines)
@@ -26,7 +26,7 @@ public class Y202403 : AoCBase
 
     public override string PartTwo(string input)
     {
-        var lines = input.ToEnumerableString();
+        var lines = input.ToArrayInput();
         var sum = 0;
         bool doMath = true;
     

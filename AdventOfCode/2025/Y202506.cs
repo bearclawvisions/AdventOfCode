@@ -6,7 +6,7 @@ public class Y202506 : AoCBase
 {
     public override string PartOne(string input)
     {
-        var lines = input.ToEnumerableString().ToArray();
+        var lines = input.ToArrayInput();
         var columns = new List<DataStructure>();
 
         var lineCount = 0;

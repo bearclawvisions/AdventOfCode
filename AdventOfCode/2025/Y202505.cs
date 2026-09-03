@@ -5,7 +5,7 @@ public class Y202505 : AoCBase
     private record Range(long Min, long Max);
     public override string PartOne(string input)
     {
-        var lines = input.ToEnumerableString().ToArray();
+        var lines = input.ToArrayInput();
 
         var rangeSplit = lines.Where(x => x.Contains('-')).ToArray();
         var ranges = rangeSplit
@@ -41,7 +41,7 @@ public class Y202505 : AoCBase
     
     public override string PartTwo(string input)
     {
-        var lines = input.ToEnumerableString().ToArray();
+        var lines = input.ToArrayInput();
 
         var rangeSplit = lines.Where(x => x.Contains('-')).ToArray();
         var ranges = rangeSplit

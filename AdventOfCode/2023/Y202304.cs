@@ -9,7 +9,7 @@ public class Y202304 : AoCBase
     public override string PartOne(string input)
     {
         var totalPoints = 0;
-        foreach (var line in input.ToEnumerableString())
+        foreach (var line in input.ToArrayInput())
         {
             var splitCardNumber = line.Split(":");
             var winningNumbers = splitCardNumber[1].Split("|")[0]
@@ -30,7 +30,7 @@ public class Y202304 : AoCBase
     {
         // cardNo, winningNo[], lotteryNo[]
         var scratchCards = new List<Tuple<int, List<int>, List<int>>>();
-        foreach (var line in input.ToEnumerableString())
+        foreach (var line in input.ToArrayInput())
         {
             var splitCardNumber = line.Split(":");
             var cardNumber = int.Parse(splitCardNumber[0].Split(" ", StringSplitOptions.RemoveEmptyEntries)[1]);

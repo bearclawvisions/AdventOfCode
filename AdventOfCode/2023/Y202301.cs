@@ -9,7 +9,7 @@ public class Y202301 : AoCBase
     {
         var calibrationList = new List<int>();
 
-        foreach (var line in input.ToEnumerableString())
+        foreach (var line in input.ToArrayInput())
         {
             // Regex to match the first occurence of an int
             var match1 = Regex.Match(line, @"\d").Value;
@@ -33,7 +33,7 @@ public class Y202301 : AoCBase
         var words = new[] { "one", "two", "three", "four", "five", "six", "seven", "eight", "nine" };
         const string pattern = @"\d|one|two|three|four|five|six|seven|eight|nine";
 
-        foreach (var line in input.ToEnumerableString())
+        foreach (var line in input.ToArrayInput())
         {
             var number1 = Regex.Match(line, pattern).Value;
             var number2 = Regex.Match(line, pattern, RegexOptions.RightToLeft).Value;

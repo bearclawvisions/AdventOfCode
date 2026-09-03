@@ -4,7 +4,7 @@ public class Y202402 : AoCBase
 {
     public override string PartOne(string input)
     {
-        var lines = input.ToEnumerableString().ToArray();
+        var lines = input.ToArrayInput();
         var correctReports = 0;
 
         foreach (var line in lines)
@@ -37,7 +37,7 @@ public class Y202402 : AoCBase
 
     public override string PartTwo(string input)
     {
-        var lines = input.ToEnumerableString().ToArray();
+        var lines = input.ToArrayInput();
 
         var correctReports = lines.Count(line => IsSafe(line));
         

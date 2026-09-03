@@ -4,7 +4,7 @@ public class Y202503 : AoCBase
 {
     public override string PartOne(string input)
     {
-        var lines = input.ToEnumerableString().ToArray();
+        var lines = input.ToArrayInput();
         var joltage = 0;
 
         foreach (var line in lines)

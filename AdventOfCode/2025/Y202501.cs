@@ -9,7 +9,7 @@ public class Y202501 : AoCBase
     
     public override string PartOne(string input)
     {
-        var lines = input.ToEnumerableString().ToArray();
+        var lines = input.ToArrayInput();
         
         var dialPosition = 50;
         var zeroCount = 0;
@@ -28,7 +28,7 @@ public class Y202501 : AoCBase
 
     public override string PartTwo(string input)
     {
-        var lines = input.ToEnumerableString().ToArray();
+        var lines = input.ToArrayInput();
         
         var dialPosition = 50;
         var zeroCount = 0;

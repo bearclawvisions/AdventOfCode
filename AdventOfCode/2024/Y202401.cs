@@ -4,7 +4,7 @@ public class Y202401 : AoCBase
 {
     public override string PartOne(string input)
     {
-        var lines = input.ToEnumerableString().ToArray();
+        var lines = input.ToArrayInput();
         var firstList = new List<int>();
         var secondList = new List<int>();
 
@@ -33,7 +33,7 @@ public class Y202401 : AoCBase
 
     public override string PartTwo(string input)
     {
-        var lines = input.ToEnumerableString().ToArray();
+        var lines = input.ToArrayInput();
         var firstList = new List<int>();
         var secondList = new List<int>();
         

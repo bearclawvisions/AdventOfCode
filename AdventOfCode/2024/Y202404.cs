@@ -9,7 +9,7 @@ public class Y202404 : AoCBase
     
     public override string PartOne(string input)
     {
-        var lines = input.ToEnumerableString().ToArray();
+        var lines = input.ToArrayInput();
         const string target = "XMAS";
 
         var sum = CountWordOccurrences(lines, target);
@@ -76,7 +76,7 @@ public class Y202404 : AoCBase
 
     public override string PartTwo(string input)
     {
-        var lines = input.ToEnumerableString().ToArray();
+        var lines = input.ToArrayInput();
         var sum = CountXMASOccurrences(lines);
         
         return sum.ToString();

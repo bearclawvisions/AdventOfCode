@@ -4,7 +4,7 @@ public class Y202405 : AoCBase
 {
     public override string PartOne(string input)
     {
-        var lines = input.ToEnumerableString().ToArray();
+        var lines = input.ToArrayInput();
         var rules = lines.Where(x => x.Contains('|')).ToArray();
         var pages = lines.Where(x => !x.Contains('|')).ToArray();
 
@@ -65,7 +65,7 @@ public class Y202405 : AoCBase
 
     public override string PartTwo(string input)
     {
-        var lines = input.ToEnumerableString().ToArray();
+        var lines = input.ToArrayInput();
         var rules = lines.Where(x => x.Contains('|')).Select(rule => rule.Split('|')).ToArray();
         var updates = lines.Where(x => !x.Contains('|')).Select(update => update.Split(',').ToList()).ToList();
 

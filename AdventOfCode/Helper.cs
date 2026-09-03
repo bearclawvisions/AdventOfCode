@@ -8,7 +8,7 @@ public static class Helper
         return File.ReadAllText(filePath);
     }
 
-    public static IEnumerable<string> ToEnumerableString(this string input)
+    public static string[] ToArrayInput(this string input)
     {
         return input.Split(Environment.NewLine, StringSplitOptions.RemoveEmptyEntries);
     }
