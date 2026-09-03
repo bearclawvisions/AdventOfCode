@@ -43,6 +43,38 @@ public class Y202507 : AoCBase
         return splitHitCount;
     }
 
+    public override long PartTwoLong(string input)
+    {
+        var lines = input.ToEnumerableString().ToArray();
+
+        var beams = new Dictionary<int, long>(); // this time we want the dupes
+        var start = lines[0].IndexOf(Start, StringComparison.Ordinal);
+        beams[start] = 1;
+
+        for (var i = 1; i < lines.Length; i++)
+        {
+            var next = new Dictionary<int, long>();
+
+            foreach (var (col, count) in beams)
+            {
+                if (lines[i][col] == Splitter)
+                {
+                    // each of 'count' timelines splits into two
+                    next[col - 1] = next.GetValueOrDefault(col - 1) + count;
+                    next[col + 1] = next.GetValueOrDefault(col + 1) + count;
+                }
+                else
+                {
+                    next[col] = next.GetValueOrDefault(col) + count;
+                }
+            }
+
+            beams = next;
+        }
+
+        return beams.Values.Sum();
+    }
+
     private static void ReplaceWithBeam(ref string[] lines, int lineIndex, int beam, bool isSplitter)
     {
         var chars = lines[lineIndex].ToCharArray();
