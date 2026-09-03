@@ -22,10 +22,16 @@ public class AoCBase()
         Console.Write("Part Two: " + PartTwo(input));
         stopwatch2.Stop();
         Console.WriteLine($" in {stopwatch2.Elapsed.Nanoseconds} ns");
+        
+        var stopwatch3 = Stopwatch.StartNew();
+        Console.Write("Part Two: " + PartTwoLong(input));
+        stopwatch3.Stop();
+        Console.WriteLine($" in {stopwatch3.Elapsed.Nanoseconds} ns");
     }
 
     public virtual int PartOne(string input) => 0;
     public virtual long PartOneLong(string input) => 0;
 
     public virtual int PartTwo(string input) => 0;
+    public virtual long PartTwoLong(string input) => 0;
 }
