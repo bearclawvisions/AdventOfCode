@@ -7,8 +7,15 @@ public class Y202509 : AoCBase
     public override string PartOne(string input)
     {
         var lines = input.ToArrayInput();
-        var points = new List<Vector2>();
+        var points = GetVector2Points(lines);
+        var grids = CalculatePossibleGrids(points);
+        
+        return grids.Max().ToString();
+    }
 
+    private List<Vector2> GetVector2Points(string[] lines)
+    {
+        var points = new List<Vector2>();
         foreach (var line in lines)
         {
             var split = line.Split(',');
@@ -16,9 +23,7 @@ public class Y202509 : AoCBase
             points.Add(point);
         }
         
-        var grids = CalculatePossibleGrids(points);
-        
-        return grids.Max().ToString();
+        return points;
     }
 
     private List<long> CalculatePossibleGrids(List<Vector2> points)
